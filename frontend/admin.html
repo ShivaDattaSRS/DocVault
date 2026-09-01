@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocVault — Admin</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+</head>
+<body>
+  <header class="topbar">
+    <div class="row" style="gap:9px">
+      <div class="brand-mark" style="width:30px;height:30px;font-size:13px;border-radius:9px">DV</div>
+      <strong>DocVault</strong>
+      <span class="badge">Admin</span>
+    </div>
+    <div class="grow"></div>
+    <a href="/dashboard" class="btn secondary small">My files</a>
+    <div class="row" style="gap:8px">
+      <div class="avatar" id="avatar">?</div>
+      <div class="small" id="user-email">—</div>
+    </div>
+    <button class="ghost small" id="logout">Sign out</button>
+  </header>
+
+  <div style="padding:22px;display:grid;gap:20px;max-width:1200px;margin:0 auto">
+    <section>
+      <h1>Overview</h1>
+      <div class="stat-grid mt-16" id="stats"></div>
+    </section>
+
+    <section class="row" style="align-items:stretch;gap:16px;flex-wrap:wrap">
+      <div class="card grow" style="min-width:320px">
+        <div class="row spread">
+          <h2>Uploads — last 7 days</h2>
+          <span class="small muted" id="queue-info">—</span>
+        </div>
+        <div class="bars mt-16" id="chart"></div>
+      </div>
+      <div class="card" style="min-width:250px">
+        <h2>Files by type</h2>
+        <div class="mt-16" id="type-breakdown"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row spread wrap" style="gap:10px">
+        <h2>Users</h2>
+        <input type="search" id="user-search" placeholder="Search users…" style="width:220px">
+      </div>
+      <div class="table-wrap mt-16">
+        <table>
+          <thead>
+            <tr><th>User</th><th>Storage</th><th>Status</th><th>Joined</th><th></th></tr>
+          </thead>
+          <tbody id="user-rows"><tr><td colspan="5"><span class="spinner"></span></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row spread wrap" style="gap:10px">
+        <h2>All files</h2>
+        <div class="row wrap" style="gap:8px">
+          <input type="search" id="file-search" placeholder="Filename…" style="width:180px">
+          <input type="search" id="owner-search" placeholder="Owner email…" style="width:180px">
+          <select id="status-filter" style="width:auto">
+            <option value="">Any status</option>
+            <option value="ready">Ready</option>
+            <option value="processing">Processing</option>
+            <option value="failed">Failed</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap mt-16">
+        <table>
+          <thead>
+            <tr><th>File</th><th>Owner</th><th>Size</th><th>Status</th><th>Uploaded</th><th></th></tr>
+          </thead>
+          <tbody id="file-rows"><tr><td colspan="6"><span class="spinner"></span></td></tr></tbody>
+        </table>
+      </div>
+      <div class="row mt-16" style="justify-content:center;gap:10px" id="file-pager"></div>
+    </section>
+
+    <section class="card">
+      <div class="row spread wrap" style="gap:10px">
+        <h2>Activity log</h2>
+        <div class="row wrap" style="gap:8px">
+          <select id="log-action" style="width:auto">
+            <option value="">All actions</option>
+            <option value="login">Login</option>
+            <option value="login_failed">Failed login</option>
+            <option value="upload">Upload</option>
+            <option value="upload_rejected">Rejected upload</option>
+            <option value="download">Download</option>
+            <option value="public_download">Public download</option>
+            <option value="delete">Delete</option>
+            <option value="rename">Rename</option>
+            <option value="visibility">Visibility change</option>
+          </select>
+          <button class="secondary small" id="log-refresh">Refresh</button>
+        </div>
+      </div>
+      <div class="table-wrap mt-16" style="max-height:420px;overflow:auto">
+        <table>
+          <thead><tr><th>When</th><th>Action</th><th>User</th><th>Detail</th><th>IP</th></tr></thead>
+          <tbody id="log-rows"><tr><td colspan="5"><span class="spinner"></span></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

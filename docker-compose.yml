@@ -1,0 +1,32 @@
+# Starts only the two backing services. The FastAPI app runs on your host.
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: docvault-pg
+    environment:
+      POSTGRES_USER: docvault
+      POSTGRES_PASSWORD: docvault
+      POSTGRES_DB: docvault
+    ports:
+      - "5432:5432"
+    volumes:
+      - docvault_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docvault"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: docvault-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  docvault_pgdata:

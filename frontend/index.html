@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocVault — Sign in</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+</head>
+<body>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">DV</div>
+        <div class="brand-name">DocVault</div>
+      </div>
+
+      <!-- ------------------------------------------------ credentials step -->
+      <div class="card" id="credentials-step">
+        <div class="tabs">
+          <button class="active" data-tab="login">Sign in</button>
+          <button data-tab="register">Create account</button>
+        </div>
+
+        <div id="auth-alert"></div>
+
+        <form id="login-form">
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input id="login-email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+          </div>
+          <button type="submit" style="width:100%" id="login-submit">Continue</button>
+          <p class="small muted center mt-16" style="margin-bottom:0">
+            We'll email you a 6-digit code to finish signing in.
+          </p>
+        </form>
+
+        <form id="register-form" class="hidden">
+          <div class="field">
+            <label for="reg-name">Full name</label>
+            <input id="reg-name" type="text" autocomplete="name" placeholder="Ada Lovelace" required>
+          </div>
+          <div class="field">
+            <label for="reg-email">Email</label>
+            <input id="reg-email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          </div>
+          <div class="field">
+            <label for="reg-password">Password</label>
+            <input id="reg-password" type="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+          </div>
+          <button type="submit" style="width:100%" id="register-submit">Create account</button>
+        </form>
+      </div>
+
+      <!-- --------------------------------------------------------- OTP step -->
+      <div class="card hidden" id="otp-step">
+        <h2 class="center">Check your email</h2>
+        <p class="muted small center" style="margin:6px 0 18px">
+          We sent a 6-digit code to <strong id="otp-email-label"></strong>
+        </p>
+
+        <div id="otp-alert"></div>
+
+        <form id="otp-form">
+          <div class="otp-inputs" id="otp-inputs">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+            <input type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+          </div>
+          <button type="submit" style="width:100%" id="otp-submit">Verify &amp; sign in</button>
+        </form>
+
+        <div class="row spread mt-16">
+          <button class="ghost small" id="otp-back">← Use a different email</button>
+          <button class="ghost small" id="otp-resend">Resend code <span class="otp-timer" id="otp-timer"></span></button>
+        </div>
+      </div>
+
+      <p class="small muted center mt-24">
+        PDF · Images · CSV · DOCX &nbsp;·&nbsp; private by default, stored on your own server
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

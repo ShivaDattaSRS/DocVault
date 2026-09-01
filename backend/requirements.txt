@@ -1,0 +1,18 @@
+# Python 3.10+ (tested on 3.14). Pins are lower bounds so wheels exist for new interpreters.
+fastapi>=0.115.6
+uvicorn[standard]>=0.34.0
+sqlalchemy>=2.0.36
+psycopg[binary]>=3.2.13
+pydantic>=2.10.4
+pydantic-settings>=2.7.0
+python-multipart>=0.0.20
+bcrypt>=4.2.1
+PyJWT>=2.10.1
+python-dotenv>=1.0.1
+Pillow>=11.1.0
+redis>=5.2.1
+rq>=2.1.0
+email-validator>=2.2.0
+
+# Optional: enables first-page thumbnails for PDFs
+# pypdfium2>=4.30.0

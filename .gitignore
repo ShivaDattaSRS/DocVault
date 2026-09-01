@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+backend/.env
+storage/blobs/
+storage/thumbnails/
+.DS_Store
